@@ -1,0 +1,13 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "WebSite.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node WebSite.js"
+  },
+  "keywords": [],
+  "author": "LCottin",
+  "license": "MIT"
+}
