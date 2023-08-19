@@ -18,7 +18,7 @@ class MQTT_RCV():
         self.mysqlHost      = MYSQL_HOST
         self.mysqlUser      = MYSQL_USER
         self.mysqlPassword  = MYSQL_PASSWORD
-        self.tableName      = MYSQL_DB_NAME
+        self.databaseName   = MYSQL_DB_NAME
 
         self.gatewayID      = GATEWAY_ID
 
@@ -39,7 +39,7 @@ class MQTT_RCV():
         client.subscribe(self.mqttTopic)
         print("MQTT Client Connected")
         try:
-            db = pymysql.connect(host=self.mysqlHost, user=self.mysqlUser, password=self.mysqlPassword, db=self.dbName, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+            db = pymysql.connect(host=self.mysqlHost, user=self.mysqlUser, password=self.mysqlPassword, db=self.databaseName, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
             print("MySQL Client Connected to " + self.mysqlHost + " !")
             db.close()
         except:
