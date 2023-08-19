@@ -20,8 +20,6 @@ class MQTT_RCV():
         self.mysqlPassword  = MYSQL_PASSWORD
         self.databaseName   = MYSQL_DB_NAME
 
-        self.gatewayID      = GATEWAY_ID
-
         self.client            = mqtt.Client()
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
@@ -61,7 +59,7 @@ class MQTT_RCV():
         db = pymysql.connect(host        = self.mysqlHost, 
                              user        = self.mysqlUser, 
                              password    = self.mysqlPassword, 
-                             db          = self.dbName,
+                             db          = self.databaseName,
                              charset     = 'utf8mb4',
                              cursorclass = pymysql.cursors.DictCursor)
         cursor = db.cursor()
@@ -70,7 +68,9 @@ class MQTT_RCV():
         json_dict = json.loads((msg.payload).decode("utf-8"))
         
         # Build the SQL query to insert the data into the MySQL table
-        insertRequest = "INSERT INTO " + self.tableName + " (temperature, humidity) VALUES (" + str(json_dict['temperature']) + ", " + str(json_dict['humidity']) + ")"
+        insertRequest  = "INSERT INTO " + self.tableName + " (time, temperature, humidity, pressure, altitude, gas_resistance) VALUES ("
+        insertRequest += str(json_dict['time']) + ", " + str(json_dict['temperature']) + ", " + str(json_dict['humidity']) + ", "
+        insertRequest += str(json_dict['pressure']) + ", " + str(json_dict['altitude']) + ", " + str(json_dict['gas_resistance']) + ");"
 
         # Insert the data into the MySQL table
         cursor.execute(insertRequest)
