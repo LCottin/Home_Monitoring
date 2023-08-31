@@ -11,8 +11,8 @@ const LivingRoom = require("./App/Routes/LivingRoom/instantData");
 
 // Setting up the static files
 app.use(express.static(__dirname + "/Public/css"));
-app.use(express.static(__dirname + "/src/LivingRoom"));
 app.use(express.static(__dirname + "/Public/img"));
+app.use(express.static(__dirname + "/Public/js"));
 
 // Setting up the routes
 app.use("/livingroom", LivingRoom);

@@ -32,4 +32,22 @@ router.get("/", function (req, res) {
     });
 });
 
+router.get("/get_all", function (req, res) {
+    connection.query('SELECT * FROM LivingRoom ORDER BY id DESC LIMIT 20', function (error, results, fields) {
+        if (error)
+            throw error;
+
+        // Renvoyer les données au format JSON	
+        res.statusCode = 200;
+        res.set('Content-Type', 'application/javascript');
+        res.json(results);
+        res.end();
+    });
+});
+
+router.get("/graph", function (req, res) 
+{
+    res.render(path.resolve("Public/ejs/LivingRoom/graph.ejs"));
+});
+
 module.exports = router;

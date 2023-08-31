@@ -54,3 +54,9 @@ footer
     padding: 10px;
     font-size: 14px;
 }
+
+.chart-container 
+{
+    width: 100%;
+    min-height: 400px;
+}
