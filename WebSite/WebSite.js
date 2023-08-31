@@ -6,10 +6,13 @@ const app 		 = express();
 const host = process.env.HOST || "localhost";
 const port = process.env.PORT || 8080;
 
+// Setting up the static files
+app.use(express.static(__dirname + "/Public/css"));
+
 // Setting up the route
 app.get("/", function (req, res)
 {
-	res.send("Hello World!")
+	res.sendFile(__dirname + "/Public/html/index.html");
 });
 
 // Starting the server

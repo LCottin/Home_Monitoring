@@ -1,0 +1,56 @@
+/* Mise en forme globale */
+body 
+{   font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* En-tête */
+header 
+{      background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 
+{   margin: 0;
+    font-size: 36px;
+}
+
+nav ul 
+{   list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li 
+{   display: inline-block;
+    margin-right: 20px;
+}
+
+nav a 
+{   color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* Contenu principal */
+main 
+{   max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+main p 
+{   line-height: 1.5;
+    font-size: 18px;
+}
+
+/* Pied de page */
+footer 
+{   background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
