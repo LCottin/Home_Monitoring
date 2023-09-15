@@ -16,32 +16,32 @@
 
   <main>
     <h2>Current Data</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Temperature</th>
-          <th>Humidity</th>
-          <th>Pressure</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= timestamp %>
-          </td>
-          <td>
-            <%= temperature %>
-          </td>
-          <td>
-            <%= humidity %>
-          </td>
-          <td>
-            <%= pressure %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="line-table">
+      <div class="line-row">
+        <div class="line-icon">
+          <img class="icon" src="https://img.icons8.com/ios/50/clock--v1.png"/>
+        </div>
+        <div class="line-text"><strong>    Time:</strong> <%= timestamp %></div>
+      </div>
+      <div class="line-row">
+        <div class="line-icon">
+          <img class="icon" src="https://img.icons8.com/dusk/64/000000/thermometer.png"/>
+        </div>
+        <div class="line-text"><strong>    Temperature:</strong> <%= temperature %></div>
+      </div>
+      <div class="line-row">
+        <div class="line-icon">
+          <img class="icon" src="https://img.icons8.com/dusk/64/000000/hygrometer.png"/>
+        </div>
+        <div class="line-text"><strong>    Humidity:</strong> <%= humidity %></div>
+      </div>
+      <div class="line-row">
+        <div class="line-icon">
+          <img class="icon" src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/external-barometer-nuclear-energy-vitaliy-gorbachev-lineal-vitaly-gorbachev.png"/>
+        </div>
+        <div class="line-text"><strong>    Pressure:</strong> <%= pressure %></div>
+      </div>
+    </div>
   </main>
 </body>
 

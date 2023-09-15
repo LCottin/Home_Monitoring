@@ -24,7 +24,7 @@ router.get("/", function (req, res) {
 
         // Renvoyer les données au format JSON	
         res.render(path.resolve("Public/ejs/LivingRoom/instantData.ejs"), {
-            timestamp: date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes(),
+            timestamp: date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
             temperature: results[0].temperature,
             humidity: results[0].humidity,
             pressure: results[0].pressure,
