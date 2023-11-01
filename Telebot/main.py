@@ -4,8 +4,8 @@ from env import TOKEN, CHAT_ID
 
 def main():
 
-    bot = Bot()
     db = Database()
+    bot = Bot(db)
 
     while True:
         try:

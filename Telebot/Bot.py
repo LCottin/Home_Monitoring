@@ -1,18 +1,39 @@
 import telebot
 from env import TOKEN, CHAT_ID
 from time import sleep
+from datetime import datetime
 
 bot = telebot.TeleBot(TOKEN)
 class Bot:
-	def __init__(self):
+	def __init__(self, database):
 		self.token 		= TOKEN
 		self.chat_id 	= CHAT_ID
 		self.bot 	    = bot
+		self.database   = database
 
+		"""
+		Send a message when the command /start or /help is issued.
+		"""
 		@bot.message_handler(commands=['help', 'start'])
 		def send_welcome(message):
 			msg = self.reply_to(message, "Welcome !")
-			
+
+		"""
+		Send last data when the command /last is issued.
+		"""
+		@bot.message_handler(commands=['last'])
+		def send_last(message):
+			lastData   = self.database.getLastData()
+			time 	   = datetime.fromtimestamp(lastData["time"]).strftime("%d/%m/%Y %H:%M:%S")
+			msgToSend  = "Last data:\n"
+			msgToSend += "\tTime: " + time + "\n"
+			msgToSend += "\tTemperature: " + str(lastData["temperature"]) + " °C\n"
+			msgToSend += "\tHumidity: " + str(lastData["humidity"]) + " %\n"
+			msgToSend += "\tPressure: " + str(lastData["pressure"]) + " hPa\n"
+			msgToSend += "\tAltitude: " + str(lastData["altitude"]) + " m\n"
+			msgToSend += "\tGas resistance: " + str(lastData["gas_resistance"]) + " Ohm\n"
+			self.reply_to(message, msgToSend)
+		
 		print("Bot initialized")
 
 	def send_message(self, message):
