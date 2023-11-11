@@ -3,6 +3,10 @@
 
 #include <string>
 #include <tgbot/tgbot.h>
+#include <iostream>
+
+#include "Database.hpp"
+#include "CONFIGS.hpp"
 
 using namespace std;
 using namespace TgBot;
@@ -10,13 +14,14 @@ using namespace TgBot;
 class MyBot 
 {
     private:
-        string _Token;
-        Bot *_Bot;
+        string    _Token;
+        Bot      *_Bot;
+        Database *_Db;
 
         void init();
 
     public:
-        MyBot(const string& token);
+        MyBot();
         
         void sendWelcome(Message::Ptr message);
 

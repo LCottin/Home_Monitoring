@@ -1,9 +1,10 @@
 #include "MyBot.hpp"
 
-MyBot::MyBot(const string& token) 
+MyBot::MyBot() 
 {
-    _Token = token;
+    _Token = TG_TOKEN;
     _Bot   = new Bot(_Token);
+    _Db    = new Database(DB_HOST, DB_USER, DB_PWD, DB_NAME);
 
     init();
 }
@@ -43,6 +44,7 @@ void MyBot::sendWelcome(Message::Ptr message)
 void MyBot::sendLastData(Message::Ptr message) 
 {
     _Bot->getApi().sendMessage(message->chat->id, "Last data: ...");
+    _Db->getLastData("temperature");
 }
 
 void MyBot::sendStop(Message::Ptr message) 
