@@ -12,14 +12,19 @@ Database::Database(const string& host, const string& user, const string& passwor
     _Conn->setSchema(_DbName);
 }
 
-void Database::getLastData(const string& dataType) 
+void Database::getLastData(const string &dataType, data_t *data) 
 {
-    getData(dataType, 1);
+    getData(dataType, data, 1);
 }
 
-void Database::getData(const string& dataType, const int number)
+void Database::getData(const string &dataType, data_t *data, const int number)
 {
     string query;
+    Statement* stmt;
+    ResultSet* res;
+
+    stmt = _Conn->createStatement();
+
     if ((dataType == "all") || (dataType == "ALL"))
     {
         query = "SELECT * FROM LivingRoom ORDER BY id DESC LIMIT " + to_string(number);
@@ -29,13 +34,18 @@ void Database::getData(const string& dataType, const int number)
         query = "SELECT time, " + dataType + " FROM LivingRoom ORDER BY id DESC LIMIT " + to_string(number);
     }
 
-    Statement* stmt = _Conn->createStatement();
-    ResultSet* res = stmt->executeQuery(query);
+    res = stmt->executeQuery(query);
+
     while (res->next()) 
     {
-        cout << "time: " << res->getString("time") << endl;
-        cout << dataType << ": " << res->getString(dataType) << endl;
+        data->time           = stoi(res->getString("time"));
+        data->temperature    = ((dataType == "temperature")    || (dataType == "all")) ? stof(res->getString("temperature")) : 0.0f;
+        data->humidity       = ((dataType == "humidity")       || (dataType == "all")) ? stof(res->getString("humidity"))    : 0.0f;
+        data->pressure       = ((dataType == "pressure")       || (dataType == "all")) ? stof(res->getString("pressure"))    : 0.0f;
+        data->altitude       = ((dataType == "altitude")       || (dataType == "all")) ? stof(res->getString("altitude"))    : 0.0f;
+        data->gas_resistance = ((dataType == "gas_resistance") || (dataType == "all")) ? stof(res->getString("gas_resistance")) : 0.0f;
     }
+
     delete res;
     delete stmt;
 }

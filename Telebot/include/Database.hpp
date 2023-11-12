@@ -11,6 +11,8 @@
 #include <string>
 #include <memory>
 
+#include "Common.hpp"
+
 using namespace std;
 using namespace sql;
 
@@ -26,8 +28,8 @@ class Database
     public:
         Database(const string& host, const string& user, const string& password, const string& dbName);
 
-        void getData(const string& dataType, const int number = 1);
-        void getLastData(const string& dataType);
+        void getData(const string& dataType, data_t *data, const int number = 1);
+        void getLastData(const string& dataType, data_t *data);
         
         ~Database();
 };

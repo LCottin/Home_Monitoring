@@ -7,6 +7,7 @@
 
 #include "Database.hpp"
 #include "CONFIGS.hpp"
+#include "Common.hpp"
 
 using namespace std;
 using namespace TgBot;

@@ -1,5 +1,5 @@
 #-----------------------------------------#
-#			COMPILER OPTIONS		
+#			COMPILER OPTIONS
 #-----------------------------------------#
 CX      = g++
 CXFLAGS = -std=c++20 -Wall
@@ -10,7 +10,7 @@ DIR_OBJS = ./bin
 EXEC    = $(DIR_OBJS)/MyBot
 
 #-----------------------------------------#
-#				FILES    		
+#				FILES
 #-----------------------------------------#
 SRC := $(shell echo src/*.$(EXT))
 
@@ -21,19 +21,19 @@ SRC := $(shell echo src/*.$(EXT))
 OBJS = $(addsuffix .o, $(addprefix $(DIR_OBJS)/, $(basename $(notdir $(SRC)))))
 
 #-----------------------------------------#
-#	       	COMPILING RULES	      
+#	       	COMPILING RULES
 #-----------------------------------------#
 all: build $(OBJS)
 	$(CX) $(CXFLAGS) $(OBJS) -o $(EXEC) $(LIBS)
 	@echo Project compiled !
 
-# Builds .o's from .cpp's using automatic variables 
-#	$<: the name of the prerequisite of the rule -> .cpp file 
+# Builds .o's from .cpp's using automatic variables
+#	$<: the name of the prerequisite of the rule -> .cpp file
 #	$@: the name of the target of the rule -> .o file
 $(DIR_OBJS)/%.o: ./src/%.$(EXT)
 	$(CX) $(CXFLAGS) -c $< -o $@ $(INCL)
 
-.PHONY: build # To avoid errors when building 
+.PHONY: build # To avoid errors when building
 build:
 	mkdir -p $(DIR_OBJS)
 
