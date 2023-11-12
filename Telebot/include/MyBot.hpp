@@ -22,19 +22,16 @@ class MyBot
         int       _ChatID;
 
         void init();
+        void sendLastData(Message::Ptr message) const;
+        void sendWelcome(Message::Ptr message) const;
+        void sendMessage(string message) const;
+        void sendStop(Message::Ptr message) const;
 
     public:
         MyBot();
 
-        void sendWelcome(Message::Ptr message) const;
-
-        void sendMessage(string message) const;
-
-        void sendLastData(Message::Ptr message) const;
-
-        void sendStop(Message::Ptr message) const;
-
         void run();
+        void stop();
 
         ~MyBot();
 };

@@ -92,6 +92,11 @@ void MyBot::run()
     }
 }
 
+void MyBot::stop()
+{
+    // Implement logic to stop the bot here.
+}
+
 MyBot::~MyBot()
 {
     sendMessage("Bye, bot is stopped!");
