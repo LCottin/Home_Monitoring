@@ -4,6 +4,7 @@
 #include <string>
 #include <tgbot/tgbot.h>
 #include <iostream>
+#include <time.h>
 
 #include "Database.hpp"
 #include "CONFIGS.hpp"

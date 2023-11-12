@@ -63,8 +63,8 @@ void MyBot::sendLastData(Message::Ptr message) const
     _Db->getLastData("all", &data);
 
     snprintf(content, sizeof(content),
-            "Last data:\n\tTemperature : %.2f°C\n\tHumidity : %.2f%%\n\tPressure : %.2fhPa\n\tAltitude : %.2fm\n\tGas resistance : %.2fOhm\n",
-            data.temperature, data.humidity, data.pressure, data.altitude, data.gas_resistance);
+            "Last data:\n\tTime : %s\n\tTemperature : %.2f°C\n\tHumidity : %.2f%%\n\tPressure : %.2fhPa\n\tAltitude : %.2fm\n\tGas resistance : %.2fOhm\n",
+            ctime((const time_t *)&data.time), data.temperature, data.humidity, data.pressure, data.altitude, data.gas_resistance);
 
     _Bot->getApi().sendMessage(message->chat->id, content);
 }
