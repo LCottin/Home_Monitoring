@@ -2,7 +2,7 @@
 #			COMPILER OPTIONS		
 #-----------------------------------------#
 CX      = g++
-CXFLAGS = -std=c++17 -Wall
+CXFLAGS = -std=c++20 -Wall
 EXT     = cpp
 LIBS    = -lTgBot -lboost_system -lssl -lcrypto -lpthread -lmysqlcppconn
 INCL    = -I./include
