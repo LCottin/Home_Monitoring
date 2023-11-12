@@ -2,11 +2,21 @@
 
 MyBot::MyBot()
 {
-    _Token = TG_TOKEN;
-    _Bot   = new Bot(_Token);
-    _Db    = new Database(DB_HOST, DB_USER, DB_PWD, DB_NAME);
+    _Token  = TG_TOKEN;
+    _ChatID = TG_ID;
+    _Bot    = new Bot(_Token);
+    _Db     = new Database(DB_HOST, DB_USER, DB_PWD, DB_NAME);
 
     init();
+
+#ifdef VERBOSE
+    printf("Bot username: %s\n", _Bot->getApi().getMe()->username.c_str());
+    printf("Bot id: %d\n", _Bot->getApi().getMe()->id);
+    printf("Bot name: %s\n", _Bot->getApi().getMe()->firstName.c_str());
+    printf("Bot is ready!\n");
+#endif
+
+    sendMessage("Hello, bot is ready!");
 }
 
 /**
@@ -35,13 +45,17 @@ void MyBot::init()
     });
 }
 
+void MyBot::sendMessage(string message) const
+{
+    _Bot->getApi().sendMessage(_ChatID, message);
+}
 
-void MyBot::sendWelcome(Message::Ptr message)
+void MyBot::sendWelcome(Message::Ptr message) const
 {
     _Bot->getApi().sendMessage(message->chat->id, "Welcome!");
 }
 
-void MyBot::sendLastData(Message::Ptr message)
+void MyBot::sendLastData(Message::Ptr message) const
 {
     data_t data;
     char content[256];
@@ -55,7 +69,7 @@ void MyBot::sendLastData(Message::Ptr message)
     _Bot->getApi().sendMessage(message->chat->id, content);
 }
 
-void MyBot::sendStop(Message::Ptr message)
+void MyBot::sendStop(Message::Ptr message) const
 {
     _Bot->getApi().sendMessage(message->chat->id, "Bot stopped");
     // Implement logic to stop the bot here.
@@ -72,7 +86,7 @@ void MyBot::run()
             longPoll.start();
         }
     }
-    catch (std::exception& e)
+    catch (exception &e)
     {
         printf("error: %s\n", e.what());
     }
@@ -80,5 +94,7 @@ void MyBot::run()
 
 MyBot::~MyBot()
 {
+    sendMessage("Bye, bot is stopped!");
     delete _Bot;
+    delete _Db;
 }

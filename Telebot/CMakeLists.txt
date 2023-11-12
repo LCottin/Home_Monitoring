@@ -27,4 +27,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE TgBot boost_system ssl crypto pthr
 # Add definitions to address the Boost bind warning
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     BOOST_BIND_GLOBAL_PLACEHOLDERS
+    VERBOSE
 )
