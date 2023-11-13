@@ -23,6 +23,11 @@ static void stop_thread()
     while (thread_running == true)
     {
         this_thread::sleep_for(chrono::milliseconds(10));
+        if (global_running == false)
+        {
+            thread_running = false;
+            break;
+        }
     }
 }
 
